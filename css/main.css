@@ -1,0 +1,168 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 17px;
+	background: #DDD;
+}
+
+.wrapper {
+	margin: auto;
+	width: 1000px;
+	max-width: 90%;
+}
+.clear {
+	clear: both;
+}
+
+#header {
+	background: linear-gradient(#44C,#22B);
+	border-bottom: 2px solid #000;
+	padding: 16px;
+	color: #FFF;
+}
+#logo {
+	font-size: 120%;
+	margin-right: 8px;
+	padding-right: 14px;
+	border-right: 2px solid #FFF;
+}
+#header a {
+	text-decoration: none;
+	color: #FFF;
+	border-radius: 0.2em;
+	padding: 6px;
+}
+#header a:hover {
+	background: #22B;
+}
+#header a.logout {
+	margin-left: 10px;
+	border: 1px solid #55D;
+}
+#content {
+	padding: 10px;
+	background: #FFF;
+}
+#footer {
+	border-top: 2px solid #000;
+	padding: 12px;
+	text-align: center;
+}
+
+table.list {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #CCC;
+}
+table.list th {
+	background: #EEE;
+	padding: 10px;
+}
+table.list tr {
+	border-bottom: 1px solid #CCC;
+}
+table.list td {
+	padding: 8px;
+}
+table.list tr:hover {
+	background: #F4F4F4;
+}
+
+table.hor-list {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #CCC;
+}
+table.hor-list tr {
+	border-bottom: 1px solid #CCC;
+}
+table.hor-list td {
+	padding: 8px;
+}
+table.hor-list td:first-child {
+	background: #EEE;
+	border-right: 1px solid #CCC;
+}
+
+a.tool {
+	text-decoration: none;
+	color: #FFF;
+	padding: 8px;
+	background: #19A64D;
+}
+a.tool:hover {
+	background: #2AB75E;
+}
+
+h1 span {
+	color: #22B;
+}
+
+#confirmDelete {
+	width: 400px;
+	margin: auto;
+	padding: 12px;
+	text-align: center;
+}
+#confirmDelete h1 {
+	font-size: 120%;
+	margin-bottom: 30px;
+}
+a.ok {
+	text-align: center;
+	background: #19A64D;
+	color: #FFF;
+	text-decoration: none;
+	padding: 12px;
+	width: 100px;
+	display: inline-block;
+}
+a.ok:hover {
+	background: #2AB75E;
+}
+a.cancel {
+	text-align: center;
+	background: #B72424;
+	color: #FFF;
+	text-decoration: none;
+	padding: 12px;
+	width: 100px;
+	display: inline-block;
+}
+a.cancel:hover {
+	background: #C83535;
+}
+
+input[type=text], input[type=password], textarea {
+	width: 100%;
+	padding: 8px;
+	font-size: 95%;
+}
+table.form tr td {
+	vertical-align: top;
+}
+input[type=submit] {
+	text-align: center;
+	background: #19A64D;
+	color: #FFF;
+	text-decoration: none;
+	padding: 12px;
+	width: 100px;
+	display: inline-block;
+	border: 0;
+	font-size: 16px;
+	cursor: pointer;
+}
+input[type=submit]:hover {
+	background: #2AB75E;
+}
+
+#login {
+	background: #FFF;
+	border: 1px solid #CCC;
+	margin: 20px auto;
+	width: 300px;
+	text-align: center;
+	padding: 12px;
+}

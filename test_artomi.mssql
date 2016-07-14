@@ -1,0 +1,131 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 04.07.2016 klo 21:24
+-- Palvelimen versio: 10.1.10-MariaDB
+-- PHP Version: 7.0.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `test_artomi`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Rakenne taululle `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `uniqid` varchar(10) NOT NULL,
+  `header` text NOT NULL,
+  `content` text NOT NULL,
+  `date` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Vedos taulusta `products`
+--
+
+INSERT INTO `products` (`id`, `uniqid`, `header`, `content`, `date`) VALUES
+(1, '1462957587', 'Tuote lisäty valikoimaan', 'Kakkapylly homo perae', '1462957587'),
+(5, '1462960369', 'Toinen tuote tässä', 'Pylly kakka\r\n\r\nMoikka moi', '1462960369'),
+(7, '1462960716', 'Jälleen yksi tuote valikoimassamme!', 'Uusi ja uudenkarhea, suorastaan kiiltävä!', '1462960716'),
+(8, '1464460159', 'Uusin tuote lisätty, eikö vain?', 'Tämä tässä on uusin tuotteemme.\r\n\r\nMitä mieltä olet siitä?\r\n\r\nTelevisioissa vieraskielisen ohjelman alle kirjoitetaan käännös. Usein käännös on lyhyempi kuin puhutut sana alkuperäismuodossaan. Monilla pienillä kielialueilla ei puhuttua sanaa korvata katselijan ymmärtämän kielen sanoilla dubbaamalla, vaan käännös tehdään tekstityksenä ruudun alalaitaan.', '1464460159'),
+(9, '1465727967', 'Ford Fiesta vm. 1994', 'Myydään hyväkuntoinen Fiesta vuosimallia 1994. Vaihdettu jakopään remmi ja vaihdelaatikko. Pohjassa hieman ruostetta mutta menee katsastuksesta läpi.\r\n\r\nMyydään tarpeettomana uuden tieltä. Toiminut moitteettomasti pieniä perusvikoja lukuunottamatta!!\r\n\r\nAjettu: 283 000km\r\nKulutus: 6.7l/km\r\n\r\nSuositushinta: 600e (kysy tarjous!)', '1465727967');
+
+-- --------------------------------------------------------
+
+--
+-- Rakenne taululle `statistics`
+--
+
+CREATE TABLE `statistics` (
+  `id` int(11) NOT NULL,
+  `tag` text NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Vedos taulusta `statistics`
+--
+
+INSERT INTO `statistics` (`id`, `tag`, `value`) VALUES
+(1, 'pagesCount', '4'),
+(2, 'productsCount', '8'),
+(3, 'lastChangedPassword', '1465158201');
+
+-- --------------------------------------------------------
+
+--
+-- Rakenne taululle `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` text NOT NULL,
+  `password` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Vedos taulusta `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `statistics`
+--
+ALTER TABLE `statistics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `statistics`
+--
+ALTER TABLE `statistics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
