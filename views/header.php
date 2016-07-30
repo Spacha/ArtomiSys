@@ -10,7 +10,7 @@
 			<span id="logo">ArtomiSys</span>
 			<a href="index.php?p=index">Tilastot</a>
 			<a href="index.php?p=products">Tuotteet</a>
-			<a href="index.php?p=settings.php">Asetukset</a>
+			<a href="index.php?p=settings">Asetukset</a>
 			<a href="login.php?action=true" class="logout">Kirjaudu ulos</a>
 		</div>
 	</div>
