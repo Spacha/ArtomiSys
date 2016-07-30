@@ -168,7 +168,7 @@ Class Products {
 		}
 		*/
 		// Check file size
-		if ($img["size"] > 500000) {
+		if ($img["size"] > UPLOAD_MAX_SIZE) {
 		    return false;
 		}
 		// Allow certain file formats

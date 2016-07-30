@@ -196,7 +196,7 @@ Class Model {
 			
 			$result = $query2->fetch();
 			
-			$this->deleteImgFiles($result["uniqid"]);
+			$this->deleteImgFilesById($result["uniqid"]);
 			
 			// delete it
 			$query = $this->dbCon->prepare("DELETE FROM products WHERE id = ?");
@@ -207,7 +207,7 @@ Class Model {
 		}
 	}
 	
-	public function deleteImgFiles($uniqid, $array = array()) {
+	public function deleteImgFilesById($uniqid, $array = array()) {
 		
 		if (!empty($array)) {
 			$images = $this->fetchImages($uniqid, $array);
@@ -229,7 +229,7 @@ Class Model {
 		
 		return true;
 	}
-	/*
+	
 	public function deleteImgFiles(array $images) {
 		foreach($images as $image) {
 			if (file_exists($image)) {
@@ -237,5 +237,4 @@ Class Model {
 			}
 		}
 	}
-	*/
 }

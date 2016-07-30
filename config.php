@@ -14,6 +14,7 @@ define('ROOT_PATH', dirname(__DIR__)."/ArtomiSys");
 
 define('DEFAULT_PREVIEW_IMG', "default.png");
 define('UPLOAD_TARGET', "uploads/products/");
+define('UPLOAD_MAX_SIZE', 1000000);
 
 define('HELP_FILE_ROOT', 'help/');
 define('HELP_FILE_INDEX', 'index.html');
