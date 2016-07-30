@@ -29,27 +29,38 @@
 				<td>
 				<?php
 				
+				/*
+				This shit is really fucked up. Fix it
+				*/
+				
 				$i = 1;
+				$reserved_nums = array();
 				
 				foreach($this->data['img'] as $img) {
 					if(isset($img) && $img !== false) {
-						echo "<div id=\"img_{$i}\" style=\"text-align: center; float: left; background: #CCC; margin: 4px; padding: 4px;\"><img src=\"uploads/products/". $img ."\" style=\"height: 100px; margin: 4px;\"><br />";
-						echo "<label for=\"remove_$i\">Poista</label> <input type=\"checkbox\" id=\"remove_$i\"/ name=\"remove_$i\"/></div>";
+						
+						$img_num = $img['num'];
+						$remove_num = "remove_".$img_num;
+						echo "<div id=\"img_{$i}\" style=\"text-align: center; float: left; background: #CCC; margin: 4px; padding: 4px;\"><img src=\"uploads/products/". $img['img'] ."\" style=\"height: 100px; margin: 4px;\"><br />";
+						echo "<label for=\"$remove_num\">Poista</label> <input type=\"checkbox\" id=\"$remove_num\"/ name=\"$remove_num\"/></div>";
+						array_push($reserved_nums, $img_num);
 						$i++;
 					}
 				}
 				
 				echo "<p class='clear'></p>";
-				
-				// TODO: Don't hardcode!
-				$maxImgSlots = 3;
-				$imgSlots = $maxImgSlots - count($this->data['img']);
+				//print_r($reserved_nums);
+				$imgSlots = 3;
 				
 				for($i = 0; $i < $imgSlots; $i++)
 				{
 					$n = $i+1;
 					
-					echo "<div style=\"background: #CCC; margin: 4px; padding: 4px;\">Lisää kuva: <input type=\"file\" name=\"img_file$n\" id=\"img_file$n\" class=\"img_file\"/></div>";
+					if (in_array($n, $reserved_nums)) {
+						continue;
+					}
+					
+					echo "<div style=\"background: #CCC; margin: 4px; padding: 4px;\">Lisää kuva: <input type=\"file\" name=\"img_file_$n\" id=\"img_file_$n\" class=\"img_file\"/></div>";
 				}
 				
 				?>

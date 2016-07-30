@@ -5,8 +5,8 @@ $date = date("d.m.Y - H.i", $this->data['date']);
 echo "<center>";
 
 foreach($this->data['img'] as $img) {
-	if(isset($img) && $img !== false) {
-		echo "<img src=\"uploads/products/". $img ."\" style=\"height:250; margin: 4px;\">";
+	if(isset($img['img']) && $img['img'] !== false) {
+		echo "<img src=\"uploads/products/". $img['img'] ."\" style=\"height:250; margin: 4px;\">";
 	}
 }
 

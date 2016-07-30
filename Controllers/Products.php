@@ -61,6 +61,7 @@ Class Products {
 	public function saveProduct($id = 0) {
 		
 		if ($id > 0) {
+			
 			// die("Editing is not yet possible.");
 		
 			// Go through images to remove them
@@ -70,21 +71,36 @@ Class Products {
 			$old_data = $this->model->fetchPostData($id);
 			$uniqid = $old_data['uniqid'];
 			
-			$remove_1 = isset($_POST['remove_1']) ? $_POST['remove_1'] : null;
-			$remove_2 = isset($_POST['remove_2']) ? $_POST['remove_2'] : null;
-			$remove_3 = isset($_POST['remove_3']) ? $_POST['remove_3'] : null;
+			$removables = array(1 => isset($_POST['remove_1']) ? true : false,
+								2 => isset($_POST['remove_2']) ? true : false,
+								3 => isset($_POST['remove_3']) ? true : false);
 			
-			$removables = array(
-				$remove_1,
-				$remove_2,
-				$remove_3
-			);
+			$uploadedImgs = scandir(ROOT_PATH. "/" .UPLOAD_TARGET);
 			
-			$this->model->deleteImgFiles($uniqid, $removables);
+			$uploadables = array(1 => isset($_FILES['img_file_1']) ? $_FILES['img_file_1'] : null,
+								 2 => isset($_FILES['img_file_2']) ? $_FILES['img_file_2'] : null,
+								 3 => isset($_FILES['img_file_3']) ? $_FILES['img_file_3'] : null
+								 );
 			
-			$img_name[0] = isset($_FILES["img_file1"]) ? $this->checkImgFile($_FILES["img_file1"], $uniqid."_1") : null;
-			$img_name[1] = isset($_FILES["img_file2"]) ? $this->checkImgFile($_FILES["img_file2"], $uniqid."_2") : null;
-			$img_name[2] = isset($_FILES["img_file3"]) ? $this->checkImgFile($_FILES["img_file3"], $uniqid."_3") : null;
+			$fExts = array("jpg","jpeg","png","gif");
+			
+			$i = 1;
+			
+			// Remove removable images
+			foreach($removables as $key => $remove) {
+				if ($remove == true) {
+					foreach($fExts as $fExt) {
+						$this->model->deleteImgFiles(array(UPLOAD_TARGET.$uniqid."_".$i.".".$fExt));
+					}
+				}
+				$i++;
+			}
+			
+			// Upload new images
+			foreach($uploadables as $key => $img) {
+				$this->checkImgFile($img, $uniqid . "_" . $key);
+			}
+			// die('Uploaded: ' . print_r($uploadables) . "<hr>");
 			
 			$header = $_POST['header'];
 			$content = $_POST['content'];
@@ -94,17 +110,18 @@ Class Products {
 			header("Location: index.php?p=products&action=view&id={$id}");
 			return true;
 		}
-		
+
 		$header = $_POST["header"];
 		$content = $_POST["content"];
-				
 		$uniqid = date("U");
 		$date = date("U");
 		
+		// upload the images
 		$img_name[0] = $this->checkImgFile($_FILES["img_file1"], $uniqid."_1");
 		$img_name[1] = $this->checkImgFile($_FILES["img_file2"], $uniqid."_2");
 		$img_name[2] = $this->checkImgFile($_FILES["img_file3"], $uniqid."_3");
-		
+	
+		// Finally save the product and go to the product page
 		$this->model->saveProduct($uniqid, $header, $content, $date);
 		header("Location: index.php?p=products&action=view&id={$this->model->latestId}");
 	}

@@ -55,6 +55,7 @@ Class Model {
 		return $data;
 	}
 	
+	// Returns all images from 'uploads/products/' by uniqid
 	public function fetchImages($uniqid, $array = array()) {
 		
 		$img_names = array();
@@ -71,23 +72,18 @@ Class Model {
 					
 					$tmp = explode("_", $file[0]);
 					$file_key = $tmp[0];
+					$file_num = end($tmp);
 					
 					if ($file_key == $uniqid) {
-						array_push($img_names, $files[$i]);
+						$img_names[$i]["img"] = $files[$i];
+						$img_names[$i]["num"] = $file_num;
 					}
 				}
 			}
 			
-			/*
-			print_r($img_names);
-			echo "<hr>";
-			print_r($array);
-			*/
-			//die();
-			
 			// drop off unecessary images
 			if (isset($array) && !empty($array)) {
-				foreach($img_names as $img) {
+				foreach($img_names["img"] as $img) {
 					if (in_array($img, $array)) {
 						unset($img);
 					}
@@ -221,29 +217,24 @@ Class Model {
 				unlink($img_full_name);
 			}
 		}
-		/*
+		
 		if (empty($array)) {
 			$images = $this->fetchImages($uniqid);
 			
 			foreach($images as $image) {
-				$img_full_name = "uploads/products/". $image;
+				$img_full_name = UPLOAD_TARGET."/". $image['img'];
 				unlink($img_full_name);
 			}
 		}
-		*/
+		
 		return true;
 	}
-	
 	/*
-	private function deleteImgFile($img_name) {
-		$img_full_name = "uploads/products/". $img_name;
-		
-		if (file_exists($img_full_name) && $img_name !== "default.png") {
-			if (!unlink($img_full_name)) {
-				return 0;
+	public function deleteImgFiles(array $images) {
+		foreach($images as $image) {
+			if (file_exists($image)) {
+				unlink($image);
 			}
-		} elseif($img_name !== "default.png") {
-			// return 0;
 		}
 	}
 	*/
