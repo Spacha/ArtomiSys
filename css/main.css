@@ -15,6 +15,19 @@ html, body {
 	clear: both;
 }
 
+.msg_success {
+	margin: 4px;
+	text-align: center;
+	background: #19A64D;
+	color: #FFF;
+}
+.msg_error {
+	margin: 4px;
+	text-align: center;
+	background: #B72424;
+	color: #FFF;
+}
+
 #header {
 	background: linear-gradient(#44C,#22B);
 	border-bottom: 2px solid #000;

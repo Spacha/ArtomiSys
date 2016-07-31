@@ -19,19 +19,34 @@ Class Model {
 		
 		if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == false) {
 			
-			$query = $this->dbCon->prepare("SELECT * FROM users WHERE username = ?");
-			$query->execute(array($username));
-			
-			$result = $query->fetch();
-			
-			$correct_password = $result["password"];
-			
-			if (md5($password) == $correct_password) {
-				return true;
-			} else {
-				return false;
-			}
+			return $this->correctPassword($username, $password);
 		}
+	}
+	
+	public function correctPassword($username, $password) {
+		$query = $this->dbCon->prepare("SELECT * FROM users WHERE username = ?");
+		$query->execute(array($username));
+		
+		$result = $query->fetch();
+		
+		$correct_password = $result["password"];
+		
+		if (md5($password) == $correct_password) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public function changePassword($username, $password) {
+		$password = md5($password);
+		$query = $this->dbCon->prepare("UPDATE `users` SET `password`='{$password}' WHERE username = '{$username}'");
+		
+		if($query->execute()) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public function helpContent($file = HELP_FILE_INDEX) {
@@ -156,6 +171,13 @@ Class Model {
 		}
 		
 		$this->latestId = $this->dbCon->lastInsertId();
+	}
+	
+	public function setStats(array $stats) {
+		foreach($stats as $tag => $value) {
+			$query = $this->dbCon->prepare("UPDATE `statistics` SET `value`='{$value}' WHERE tag = '{$tag}'");
+			$query->execute();
+		}
 	}
 	
 	public function getStats($stats) {
